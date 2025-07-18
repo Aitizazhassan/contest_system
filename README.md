@@ -109,3 +109,29 @@ A complete Postman collection for the API is available in the `docs` directory:
 -   `docs/Contest Participation System API.postman_collection.json`
 
 You can import this file into Postman to test all available API endpoints. The collection includes a `base_url` variable which is preset to `http://localhost:8000`. For authenticated routes, you will need to first log in via the `Auth > Login` request to get a bearer token.
+
+## Running the Scheduler
+
+This project uses Laravel's scheduler to automatically award prizes for contests that have ended. 
+
+### On a Production Server
+
+To run the scheduler on a production server, you'll need to set up a cron job that executes the following command every minute. Make sure to replace `/path-to-your-project` with the actual path to your application on the server.
+
+```bash
+* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+```
+
+### On a Local Development Environment
+
+For local development and testing, you can run the scheduler manually. The following command will execute all scheduled tasks, including awarding prizes for any contest whose `ends_at` date is in the past.
+
+```bash
+php artisan schedule:run
+```
+
+Alternatively, you can run the prize-awarding command directly, which is useful for testing this specific feature:
+
+```bash
+php artisan app:award-prizes
+```
