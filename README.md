@@ -37,7 +37,7 @@ This is a full-stack web application for a contest participation system, built w
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repository-url>
+    git clone git@github.com:Aitizazhassan/contest_system.git
     cd contest_system
     ```
 
