@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "YOUR_COLLECTION_ID",
+		"name": "Contest Participation System API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"description": "API documentation for the Contest Participation System."
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test User\",\n    \"email\": \"test@example.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": { "raw": "{{base_url}}/api/v1/auth/register", "host": ["{{base_url}}"], "path": ["api", "v1", "auth", "register"] }
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"password\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": { "raw": "{{base_url}}/api/v1/auth/login", "host": ["{{base_url}}"], "path": ["api", "v1", "auth", "login"] }
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": { "raw": "{{base_url}}/api/v1/auth/logout", "host": ["{{base_url}}"], "path": ["api", "v1", "auth", "logout"] },
+						"description": "Requires Bearer Token authentication."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contests",
+			"item": [
+				{
+					"name": "Get All Contests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": { "raw": "{{base_url}}/api/v1/contests", "host": ["{{base_url}}"], "path": ["api", "v1", "contests"] }
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Contest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": { "raw": "{{base_url}}/api/v1/contests/1", "host": ["{{base_url}}"], "path": ["api", "v1", "contests", "1"] }
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Answers",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"responses\": {\n        \"1\": [2],\n        \"2\": [4, 6]\n    }\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": { "raw": "{{base_url}}/api/v1/contests/1/submit", "host": ["{{base_url}}"], "path": ["api", "v1", "contests", "1", "submit"] },
+						"description": "Requires Bearer Token authentication."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": { "raw": "{{base_url}}/api/v1/history", "host": ["{{base_url}}"], "path": ["api", "v1", "history"] },
+						"description": "Requires Bearer Token authentication."
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Prizes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": { "raw": "{{base_url}}/api/v1/prizes", "host": ["{{base_url}}"], "path": ["api", "v1", "prizes"] },
+						"description": "Requires Bearer Token authentication."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Leaderboard",
+			"item": [
+				{
+					"name": "Get Contest Leaderboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": { "raw": "{{base_url}}/api/v1/leaderboard/1", "host": ["{{base_url}}"], "path": ["api", "v1", "leaderboard", "1"] }
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": { "raw": "{{base_url}}/api/v1/admin/users", "host": ["{{base_url}}"], "path": ["api", "v1", "admin", "users"] },
+						"description": "Requires Admin Bearer Token."
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New VIP User\",\n    \"email\": \"vip@example.com\",\n    \"password\": \"password\",\n    \"role\": \"vip\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": { "raw": "{{base_url}}/api/v1/admin/users", "host": ["{{base_url}}"], "path": ["api", "v1", "admin", "users"] },
+						"description": "Requires Admin Bearer Token."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Contest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New Admin Contest\",\n    \"description\": \"A contest created by an admin.\",\n    \"access_level\": \"vip\",\n    \"start_time\": \"2024-01-01 10:00:00\",\n    \"end_time\": \"2024-01-02 10:00:00\",\n    \"prize\": {\n        \"name\": \"Super Prize\",\n        \"description\": \"A prize for the super contest.\"\n    }\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": { "raw": "{{base_url}}/api/v1/admin/contests", "host": ["{{base_url}}"], "path": ["api", "v1", "admin", "contests"] },
+						"description": "Requires Admin Bearer Token."
+					},
+					"response": []
+				},
+				{
+					"name": "Add Question to Contest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"What is the capital of everything?\",\n    \"type\": \"single\",\n    \"answers\": [\n        {\"text\": \"42\", \"is_correct\": true},\n        {\"text\": \"24\", \"is_correct\": false}\n    ]\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": { "raw": "{{base_url}}/api/v1/admin/contests/1/questions", "host": ["{{base_url}}"], "path": ["api", "v1", "admin", "contests", "1", "questions"] },
+						"description": "Requires Admin Bearer Token."
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Awarded Prizes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": { "raw": "{{base_url}}/api/v1/admin/prizes", "host": ["{{base_url}}"], "path": ["api", "v1", "admin", "prizes"] },
+						"description": "Requires Admin Bearer Token."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000"
+		}
+	]
+} 
